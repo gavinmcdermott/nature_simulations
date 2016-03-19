@@ -215,28 +215,62 @@ var counts = [];
 
 
 // I.5
-// Perlin noise hackiness
+// Perlin noise 1-D hackiness
+/////////////////////////////////
+
+// function setup() {
+//   createCanvas(700, 300);
+//   background(160);
+// };
+
+// var starterPointX = 0;
+// var starterPointY = 3000;
+// var ellipseSize = 5;
+
+// function draw() {  
+//   var startNoiseX = noise(starterPointX);
+//   var startNoiseY = noise(starterPointY);
+//   var posX = map(startNoiseX, 0, 1, 0, width);
+//   var posY = map(startNoiseY, 0, 1, 0, height);
+
+//   fill(225);
+//   ellipse(posX, posY, ellipseSize, ellipseSize);
+
+//   ellipseSize += 0.01;
+//   starterPointX += 0.005;
+//   starterPointY += 0.01;
+// };
+
+
+
+
+// I.6
+// Perlin noise in 2 dimensions
 /////////////////////////////////
 
 function setup() {
-  createCanvas(700, 300);
-  background(160);
-};
+  createCanvas(windowWidth-20, 100);
+  // createCanvas(300, 50);
 
-var starterPointX = 0;
-var starterPointY = 0;
+  // must be called before reading from or writing to pixels
+  loadPixels();
+  
 
-function draw() {  
-  var startNoiseX = noise(starterPointX);
-  var startNoiseY = noise(starterPointY);
-  var posX = map(startNoiseX, 0, 1, 0, width);
-  var posY = map(startNoiseY, 0, 1, 0, height);
 
-  fill(225);
-  ellipse(posX, posY, 30, 30);
-
-  starterPointX += 0.005;
-  starterPointY += 0.02;
+  var xOff = 0;
+  for (var x=0; x < width; x++) {
+    var yOff = 10000;
+    for (var y=0; y < height; y++) {
+      // var brightness = random(255);  // random brightness
+      var brightness = float(map(noise(xOff, yOff), 0, 1, 0, 255));  // Perlin brightness
+      set(x, y, brightness);
+      yOff += 0.01;
+    }
+    xOff += 0.01;
+  }
+  
+  // necessary to apply changes
+  updatePixels();
 };
 
 
