@@ -169,20 +169,20 @@ var counts = [];
 // Dots showing a random distribution
 /////////////////////////////////
 
-// function setup() {
-//   createCanvas(700, 300);
-//   background(100);
-// }
+function setup() {
+  createCanvas(700, 300);
+  background(100);
+}
 
-// function draw() {
-//   var stdDev = 50;
-//   var mean = 350;
-//   var pos = randomGaussian(mean, stdDev);
+function draw() {
+  var stdDev = 50;
+  var mean = 350;
+  var pos = randomGaussian(mean, stdDev);
 
-//   noStroke();
-//   fill(255, 10);
-//   ellipse(pos, 180, 20, 20);
-// }
+  noStroke();
+  fill(255, 10);
+  ellipse(pos, 180, 20, 20);
+}
 
 
 
@@ -248,30 +248,65 @@ var counts = [];
 // Perlin noise in 2 dimensions
 /////////////////////////////////
 
-function setup() {
-  createCanvas(windowWidth-20, 100);
-  // createCanvas(300, 50);
+// var zOffset = 0;
 
-  // must be called before reading from or writing to pixels
-  loadPixels();
+// function makeNoise() {
+//   // must be called before reading from or writing to pixels
+//   loadPixels();
   
-
-
-  var xOff = 0;
-  for (var x=0; x < width; x++) {
-    var yOff = 10000;
-    for (var y=0; y < height; y++) {
-      // var brightness = random(255);  // random brightness
-      var brightness = float(map(noise(xOff, yOff), 0, 1, 0, 255));  // Perlin brightness
-      set(x, y, brightness);
-      yOff += 0.01;
-    }
-    xOff += 0.01;
-  }
+//   var xOffset = 0;
+//   for (var x=0; x < width; x++) {
+//     var yOffset = 10000;
+//     for (var y=0; y < height; y++) {
+//       // var brightness = random(255);  // random brightness
+//       var brightness = map(noise(xOffset, yOffset, zOffset), 0, 1, 0, 255);  // Perlin brightness
+//       set(x, y, brightness);
+//       yOffset += 0.01;
+//     }
+//     xOffset += 0.01;
+//   }
   
-  // necessary to apply changes
-  updatePixels();
-};
+//   // necessary to apply changes
+//   updatePixels(); 
+// };
+
+// function setup() {
+//   createCanvas(200, 200);
+//   frameRate(25)
+// };
+
+// function draw() {
+//   makeNoise();
+//   zOffset += 0.01;
+// };
+
+
+
+
+// I.10
+// Perlin noise landscape
+/////////////////////////////////
+
+// var Landscape = function() {
+//   this.cellSize = 5;
+//   this.landWidth = width;
+//   this.landHeight = height;
+  
+//   this.rows = this.landWidth/this.cellSize;
+//   this.cols = this.landHeight/this.cellSize;
+//   // this.z = 
+// };
+
+// function setup() {
+//   createCanvas(700, 200);
+//   // frameRate(.1)
+//   new Landscape();
+// };
+
+// function draw() {
+//   // makeNoise();
+//   // zOffset += 0.01;
+// };
 
 
 
